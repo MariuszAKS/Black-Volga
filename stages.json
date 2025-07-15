@@ -1,0 +1,74 @@
+{
+    "stages": [
+        {
+            "id": "test",
+            "location": "",
+            "text": "",
+            "background": "",
+            "options": [
+                {
+                    "text": "",
+                    "functions": [
+                        { "name": "change_stage", "param": ["test"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "home_start",
+            "location": "Home",
+            "text": "It's finally night time.\nDo you still want to go?",
+            "background": "home_start.png",
+            "options": [
+                {
+                    "text": "Yes, let's prepare.",
+                    "functions": [
+                        { "name": "set_bandages", "param": [1] },
+                        { "name": "set_batteries", "param": [4] },
+                        { "name": "change_stage", "param": ["home_ready"] }
+                    ]
+                },
+                {
+                    "text": "I don't think it's a good idea.",
+                    "functions": [
+                        { "name": "change_stage", "param": ["home_stay"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "home_stay",
+            "location": "Home",
+            "text": "You consider staying home tonight.\nMaybe it's for the best.",
+            "background": "home_start.png",
+            "options": [
+                {
+                    "text": "I'll stay at home.",
+                    "functions": [
+                        { "name": "execute_ending", "param": ["stay_home"] }
+                    ]
+                },
+                {
+                    "text": "I changed my mind.",
+                    "functions": [
+                        { "name": "change_stage", "param": ["home_ready"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "home_ready",
+            "location": "Home",
+            "text": "You take the flashlight, batteries and some bandages.\nYou open the door.",
+            "background": "home_ready.png",
+            "options": [
+                {
+                    "text": "Okay, let's go.",
+                    "functions": [
+                        { "name": "change_stage", "param": ["test"] }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -15,11 +15,19 @@ run/main_scene="uid://cjn0ucn0i3c27"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameController="*res://scripts/game_controller.gd"
+
 [display]
 
 window/size/viewport_width=640
 window/size/viewport_height=360
 window/stretch/mode="canvas_items"
+
+[gui]
+
+theme/custom="uid://dwym2c4yew0ti"
 
 [rendering]
 

@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://n0bqcwknp55"]
+
+[ext_resource type="Texture2D" uid="uid://64bs0sf43n4l" path="res://art/frame_1.png" id="1_qt2fl"]
+
+[node name="Option" type="Button"]
+custom_minimum_size = Vector2(200, 50)
+offset_right = 200.0
+offset_bottom = 50.0
+size_flags_vertical = 3
+text = "Leave"
+flat = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_bottom = 8
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_qt2fl")
+patch_margin_left = 11
+patch_margin_top = 11
+patch_margin_right = 11
+patch_margin_bottom = 11
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 9
+theme_override_constants/margin_bottom = 9
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+text = "Leave"

@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://cjn0ucn0i3c27"]
 
-[ext_resource type="Script" uid="uid://cjp4l6oruskel" path="res://scripts/game_controller.gd" id="1_iywne"]
+[ext_resource type="Script" uid="uid://cjp4l6oruskel" path="res://scripts/ui_controller.gd" id="1_iywne"]
 [ext_resource type="Texture2D" uid="uid://64bs0sf43n4l" path="res://art/frame_1.png" id="1_uwrxv"]
-[ext_resource type="Texture2D" uid="uid://bcqx826c77c7" path="res://art/backgrounds/home_after.png" id="2_p57ef"]
+[ext_resource type="Texture2D" uid="uid://bcqx826c77c7" path="res://art/backgrounds/home_ready.png" id="2_p57ef"]
 
-[node name="Game" type="Control" node_paths=PackedStringArray("location", "text", "items")]
+[node name="Game" type="Control" node_paths=PackedStringArray("background", "location", "text", "items", "options", "menu")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,9 +12,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_iywne")
-location = NodePath("MarginContainer/Control/Location/RichTextLabel")
-text = NodePath("MarginContainer/Control/Text/MarginContainer/RichTextLabel")
-items = NodePath("MarginContainer/Control/MarginContainer/Items")
+background = NodePath("Background")
+location = NodePath("MarginContainer/Control/LocationControl/Location")
+text = NodePath("MarginContainer/Control/TextControl/TextContainer/Text")
+items = NodePath("MarginContainer/Control/ItemsContainer/Items")
+options = NodePath("MarginContainer/Control/Options")
+menu = NodePath("Menu")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
@@ -40,7 +43,7 @@ theme_override_constants/margin_bottom = 3
 [node name="Control" type="Control" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="Text" type="Control" parent="MarginContainer/Control"]
+[node name="TextControl" type="Control" parent="MarginContainer/Control"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -50,7 +53,7 @@ offset_top = -70.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Background" type="ColorRect" parent="MarginContainer/Control/Text"]
+[node name="Background" type="ColorRect" parent="MarginContainer/Control/TextControl"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -59,7 +62,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Frame" type="NinePatchRect" parent="MarginContainer/Control/Text"]
+[node name="Frame" type="NinePatchRect" parent="MarginContainer/Control/TextControl"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -73,7 +76,7 @@ patch_margin_top = 11
 patch_margin_right = 11
 patch_margin_bottom = 11
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Control/Text"]
+[node name="TextContainer" type="MarginContainer" parent="MarginContainer/Control/TextControl"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -85,13 +88,13 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 8
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/Control/Text/MarginContainer"]
+[node name="Text" type="RichTextLabel" parent="MarginContainer/Control/TextControl/TextContainer"]
 layout_mode = 2
 text = "Template Text
 WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 36W"
 vertical_alignment = 1
 
-[node name="Location" type="Control" parent="MarginContainer/Control"]
+[node name="LocationControl" type="Control" parent="MarginContainer/Control"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -100,7 +103,7 @@ offset_left = -200.0
 offset_bottom = 40.0
 grow_horizontal = 0
 
-[node name="Background" type="ColorRect" parent="MarginContainer/Control/Location"]
+[node name="Background" type="ColorRect" parent="MarginContainer/Control/LocationControl"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -109,7 +112,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Frame" type="NinePatchRect" parent="MarginContainer/Control/Location"]
+[node name="Frame" type="NinePatchRect" parent="MarginContainer/Control/LocationControl"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -122,7 +125,7 @@ patch_margin_top = 11
 patch_margin_right = 11
 patch_margin_bottom = 11
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/Control/Location"]
+[node name="Location" type="RichTextLabel" parent="MarginContainer/Control/LocationControl"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -133,80 +136,51 @@ text = "Location name"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Control"]
+[node name="ItemsContainer" type="MarginContainer" parent="MarginContainer/Control"]
 layout_mode = 1
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 
-[node name="Items" type="HBoxContainer" parent="MarginContainer/Control/MarginContainer"]
+[node name="Items" type="HBoxContainer" parent="MarginContainer/Control/ItemsContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Control"]
+[node name="Options" type="VBoxContainer" parent="MarginContainer/Control"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -154.0
-offset_right = 103.0
+offset_top = -120.0
+offset_right = 200.0
 offset_bottom = -70.0
 grow_vertical = 0
 
-[node name="Option1" type="MarginContainer" parent="MarginContainer/Control/VBoxContainer"]
-custom_minimum_size = Vector2(200, 50)
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/margin_bottom = 8
+[node name="Menu" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/Control/VBoxContainer/Option1"]
-layout_mode = 2
+[node name="Background" type="ColorRect" parent="Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/Control/VBoxContainer/Option1"]
-layout_mode = 2
-texture = ExtResource("1_uwrxv")
-patch_margin_left = 11
-patch_margin_top = 11
-patch_margin_right = 11
-patch_margin_bottom = 11
+[node name="CenterContainer" type="CenterContainer" parent="Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Control/VBoxContainer/Option1"]
+[node name="StartButton" type="Button" parent="Menu/CenterContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 9
-theme_override_constants/margin_top = 9
-theme_override_constants/margin_right = 9
-theme_override_constants/margin_bottom = 9
-
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/Control/VBoxContainer/Option1/MarginContainer"]
-layout_mode = 2
-text = "Leave"
-
-[node name="Option2" type="MarginContainer" parent="MarginContainer/Control/VBoxContainer"]
-custom_minimum_size = Vector2(200, 50)
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/margin_bottom = 8
-
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/Control/VBoxContainer/Option2"]
-layout_mode = 2
-color = Color(0, 0, 0, 1)
-
-[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/Control/VBoxContainer/Option2"]
-layout_mode = 2
-texture = ExtResource("1_uwrxv")
-patch_margin_left = 11
-patch_margin_top = 11
-patch_margin_right = 11
-patch_margin_bottom = 11
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Control/VBoxContainer/Option2"]
-layout_mode = 2
-theme_override_constants/margin_left = 9
-theme_override_constants/margin_top = 9
-theme_override_constants/margin_right = 9
-theme_override_constants/margin_bottom = 9
-
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/Control/VBoxContainer/Option2/MarginContainer"]
-layout_mode = 2
-text = "Stay"
+text = "Start the Game"
