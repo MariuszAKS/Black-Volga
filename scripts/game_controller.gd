@@ -42,7 +42,15 @@ func on_game_started():
 	change_stage("home_start")
 
 func change_stage(stage_id: String):
-	current_stage = stages[stage_id]
+	if stage_id == "playground_inside" and battery_count >= 2:
+		current_stage = stages[stage_id + "_flashlight"]
+	elif stage_id == "ending_hut":
+		current_stage = stages[stage_id + ("_good" if suspicious_person else "_bad")]
+	elif stage_id == "ending_clearing":
+		current_stage = stages[stage_id + ("_neutral" if suspicious_person else "_bad")]
+	else:
+		current_stage = stages[stage_id]
+	
 	stage_changed.emit()
 
 

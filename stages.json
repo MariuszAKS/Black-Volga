@@ -45,7 +45,7 @@
                 {
                     "text": "I'll stay at home.",
                     "functions": [
-                        { "name": "execute_ending", "param": ["stay_home"] }
+                        { "name": "change_stage", "param": ["ending_home_stay"] }
                     ]
                 },
                 {
@@ -65,7 +65,1011 @@
                 {
                     "text": "Okay, let's go.",
                     "functions": [
-                        { "name": "change_stage", "param": ["test"] }
+                        { "name": "change_stage", "param": ["outside_choice"] }
+                    ]
+                }
+            ]
+        },
+
+
+
+        {
+            "id": "outside_choice",
+            "location": "Outside",
+            "text": "After going outside, you now have to make a choice.\nPath near shop is shorter, but you may be spotted.",
+            "background": "",
+            "options": [
+                {
+                    "text": "I need to get there fast.",
+                    "functions": [
+                        { "name": "change_stage", "param": ["shop_choice"] }
+                    ]
+                },
+                {
+                    "text": "It's better I'm not spotted.",
+                    "functions": [
+                        { "name": "change_stage", "param": ["path_start"] }
+                    ]
+                }
+            ]
+        },
+
+
+
+        {
+            "id": "shop_choice",
+            "location": "Shop",
+            "text": "While walking towards the shop, you notice something.\nA suspicious looking person is leaning against the wall.",
+            "background": "",
+            "options": [
+                {
+                    "text": "Maybe longer path isn't a bad idea.",
+                    "functions": [
+                        { "name": "change_stage", "param": ["path_start"] }
+                    ]
+                },
+                {
+                    "text": "Maybe they won't even notice me.",
+                    "functions": [
+                        { "name": "change_stage", "param": ["shop_passby"] }
+                    ]
+                },
+                {
+                    "text": "You know what? Let's talk to them.",
+                    "functions": [
+                        { "name": "change_stage", "param": ["shop_approach"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "shop_passby",
+            "location": "Shop",
+            "text": "You decided to ignore the person and walk past.\nYou think they glanced at you, but that's it.",
+            "background": "",
+            "options": [
+                {
+                    "text": "Keep walking.",
+                    "functions": [
+                        { "name": "set_suspicious_person", "param": [true] },
+                        { "name": "change_stage", "param": ["playground_entrance"] }
+                    ]
+                },
+                {
+                    "text": "Let's talk to them.",
+                    "functions": [
+                        { "name": "change_stage", "param": ["shop_approach"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "shop_approach",
+            "location": "Shop",
+            "text": "While approaching the stranger, you hear something.\nWhen you turn back, they disappear.",
+            "background": "",
+            "options": [
+                {
+                    "text": "Wait, where did they go?",
+                    "functions": [
+                        { "name": "change_stage", "param": ["playground_entrance"] }
+                    ]
+                }
+            ]
+        },
+
+
+
+        {
+            "id": "path_start",
+            "location": "Path",
+            "text": "You enter the space between flats.\nThere are no light sources around you.",
+            "background": "",
+            "options": [
+                {
+                    "text": "Turn the flashlight on.",
+                    "functions": [
+                        { "name": "add_batteries", "param": [-1] },
+                        { "name": "change_stage", "param": ["path_followed_1"] }
+                    ]
+                },
+                {
+                    "text": "Keep the flashlight off.",
+                    "functions": [
+                        { "name": "change_stage", "param": ["path_dark_1"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "path_followed_1",
+            "location": "Path",
+            "text": "You walk illuminating the path with flashlight.\nSuddenly you feel you're being followed.",
+            "background": "",
+            "options": [
+                {
+                    "text": "Turn the flashlight off.",
+                    "functions": [
+                        { "name": "change_stage", "param": ["ending_path_caught_dark"] }
+                    ]
+                },
+                {
+                    "text": "Run!",
+                    "functions": [
+                        { "name": "change_stage", "param": ["path_run_long"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "path_run_long",
+            "location": "Path",
+            "text": "You run with the flashlight on and keep checking behind you.\nYou also trip on your way and have to use the bandage.",
+            "background": "",
+            "options": [
+                {
+                    "text": "I can see the playground!",
+                    "functions": [
+                        { "name": "add_batteries", "param": [-3] },
+                        { "name": "add_bandages", "param": [-1] },
+                        { "name": "change_stage", "param": ["playground_entrance_fail"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "path_dark_1",
+            "location": "Path",
+            "text": "You somehow avoid any obstructions and don't trip.\nBut now it got yet darker.",
+            "background": "",
+            "options": [
+                {
+                    "text": "Keep the flashlight off.",
+                    "functions": [
+                        { "name": "add_bandages", "param": [-1] },
+                        { "name": "change_stage", "param": ["path_trip_1"] }
+                    ]
+                },
+                {
+                    "text": "Turn the flashlight on.",
+                    "functions": [
+                        { "name": "add_batteries", "param": [-1] },
+                        { "name": "change_stage", "param": ["path_watched_1"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "path_trip_1",
+            "location": "Path",
+            "text": "Against your better judgement, you keep it off.\nYou trip on pavement piece and have to use bandage.",
+            "background": "",
+            "options": [
+                {
+                    "text": "Keep the flashlight off.",
+                    "functions": [
+                        { "name": "change_stage", "param": ["path_trip_2"] }
+                    ]
+                },
+                {
+                    "text": "Turn the flashlight on.",
+                    "functions": [
+                        { "name": "add_batteries", "param": [-1] },
+                        { "name": "change_stage", "param": ["path_movement"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "path_trip_2",
+            "location": "Path",
+            "text": "You kept the flashlight off and tripped again.\nBut it feels different somehow.",
+            "background": "",
+            "options": [
+                {
+                    "text": "Was that a leg?",
+                    "functions": [
+                        { "name": "execute_ending", "param": ["ending_path_caught_trip"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "path_movement",
+            "location": "Path",
+            "text": "You notice something moving in the bushes.\nWhat do you do?",
+            "background": "",
+            "options": [
+                {
+                    "text": "Let's investigate.",
+                    "functions": [
+                        { "name": "change_stage", "param": ["path_investigate"] }
+                    ]
+                },
+                {
+                    "text": "I probably imagined it.",
+                    "functions": [
+                        { "name": "change_stage", "param": ["path_keepwalking"] }
+                    ]
+                },
+                {
+                    "text": "Run!",
+                    "functions": [
+                        { "name": "change_stage", "param": ["path_run_short"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "path_investigate",
+            "location": "Path",
+            "text": "You decided to check the source of commotion.\nSuddenly a menacing person appears before you.",
+            "background": "",
+            "options": [
+                {
+                    "text": "Wait, what?",
+                    "functions": [
+                        { "name": "change_stage", "param": ["ending_path_caught_curious"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "path_keepwalking",
+            "location": "Path",
+            "text": "You don't care about the source of the noise.\nEven though you probably should.",
+            "background": "",
+            "options": [
+                {
+                    "text": "Maybe. Wait, who said that?",
+                    "functions": [
+                        { "name": "change_stage", "param": ["ending_path_caught_unconcern"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "path_run_short",
+            "location": "Path",
+            "text": "You run with the flashlight on and keep checking behind you.\nBecause it's not long, you don't get injured",
+            "background": "",
+            "options": [
+                {
+                    "text": "I can see the playground!",
+                    "functions": [
+                        { "name": "add_batteries", "param": [-1] },
+                        { "name": "change_stage", "param": ["playground_entrance_nobandage"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "path_watched_1",
+            "location": "Path",
+            "text": "While being able to see, it's not all fun and games.\nYou feel you're being watched.",
+            "background": "",
+            "options": [
+                {
+                    "text": "Keep walking.",
+                    "functions": [
+                        { "name": "add_batteries", "param": [-1] },
+                        { "name": "change_stage", "param": ["path_followed_2"] }
+                    ]
+                },
+                {
+                    "text": "Turn the flashlight off.",
+                    "functions": [
+                        { "name": "change_stage", "param": ["path_dark_2"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "path_followed_2",
+            "location": "Path",
+            "text": "You keep the flashlight on and keep walking.\nThe stalker started following you.",
+            "background": "",
+            "options": [
+                {
+                    "text": "Turn the flashlight off.",
+                    "functions": [
+                        { "name": "change_stage", "param": ["ending_path_caught_dark"] }
+                    ]
+                },
+                {
+                    "text": "Run!",
+                    "functions": [
+                        { "name": "change_stage", "param": ["path_run_short"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "path_dark_2",
+            "location": "Path",
+            "text": "You turn the flashlight off and keep moving.\nYou've lost the stalker but it's really dark.",
+            "background": "",
+            "options": [
+                {
+                    "text": "Keep the flashlight off.",
+                    "functions": [
+                        { "name": "change_stage", "param": ["path_dark_3"] }
+                    ]
+                },
+                {
+                    "text": "Turn the flashlight on.",
+                    "functions": [
+                        { "name": "add_batteries", "param": [-1] },
+                        { "name": "change_stage", "param": ["path_safe"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "path_dark_3",
+            "location": "Path",
+            "text": "Against your better judgement, you kept walking.\nYou trip and have to use the bandage.",
+            "background": "",
+            "options": [
+                {
+                    "text": "Ugh, bummer.",
+                    "functions": [
+                        { "name": "add_bandages", "param": [-1] },
+                        { "name": "change_stage", "param": ["path_dark_4"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "path_dark_4",
+            "location": "Path",
+            "text": "You can see the playground in front of you.\nYou don't feel the stalker's presence.",
+            "background": "",
+            "options": [
+                {
+                    "text": "Finally!",
+                    "functions": [
+                        { "name": "change_stage", "param": ["playground_entrance_nobandage"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "path_safe",
+            "location": "Path",
+            "text": "You seem to be safe, for now at least.\nYou arrive at the entrance unscathed.",
+            "background": "",
+            "options": [
+                {
+                    "text": "Let's take a look around.",
+                    "functions": [
+                        { "name": "change_stage", "param": ["playground_entrance"] }
+                    ]
+                }
+            ]
+        },
+
+
+        
+        {
+            "id": "playground_entrance_fail",
+            "location": "Playground",
+            "text": "The gate to the playground is closed.\nYou don't have any way past it.",
+            "background": "",
+            "options": [
+                {
+                    "text": "Let me in. Let me in!",
+                    "functions": [
+                        { "name": "change_stage", "param": ["ending_playground_gate"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "playground_entrance_nobandage",
+            "location": "Playground",
+            "text": "The gate to the playground is closed.\nYour flashlight still has some battery life.",
+            "background": "",
+            "options": [
+                {
+                    "text": "Maybe there's another way in.",
+                    "functions": [
+                        { "name": "add_batteries", "param": [-1] },
+                        { "name": "change_stage", "param": ["playground_hole"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "playground_entrance",
+            "location": "Playground",
+            "text": "The gate to the playground is closed.\nYou can look for another way in.",
+            "background": "",
+            "options": [
+                {
+                    "text": "Maybe there's a hole or something.",
+                    "functions": [
+                        { "name": "add_batteries", "param": [-1] },
+                        { "name": "change_stage", "param": ["playground_hole"] }
+                    ]
+                },
+                {
+                    "text": "I might be able to go across.",
+                    "functions": [
+                        { "name": "change_stage", "param": ["playground_fence"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "playground_hole",
+            "location": "Playground",
+            "text": "You found a hole hidden between bushes.\nYou crawl through into the playground.",
+            "background": "",
+            "options": [
+                {
+                    "text": "Now, let's look around.",
+                    "functions": [
+                        { "name": "change_stage", "param": ["playground_inside"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "playground_fence",
+            "location": "Playground",
+            "text": "You decided to climb the fence.\nWhile going over, you scratched your leg.",
+            "background": "",
+            "options": [
+                {
+                    "text": "I better use the bandage.",
+                    "functions": [
+                        { "name": "add_bandages", "param": [-1] },
+                        { "name": "change_stage", "param": ["playground_inside"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "playground_inside_flashlight",
+            "location": "Playground",
+            "text": "It's time to have a look around the playground.\nMaybe you'll find some clues here.",
+            "background": "",
+            "options": [
+                {
+                    "text": "Sandbox seems like a good place to start.",
+                    "functions": [
+                        { "name": "add_batteries", "param": [-1] },
+                        { "name": "change_stage", "param": ["playground_inside_lastoption"] }
+                    ]
+                },
+                {
+                    "text": "Playhouse has a lamp near it.",
+                    "functions": [
+                        { "name": "change_stage", "param": ["playground_inside_note_clearing"] }
+                    ]
+                },
+                {
+                    "text": "Maybe there's something in the bushes.",
+                    "functions": [
+                        { "name": "set_batteries", "param": [0] },
+                        { "name": "change_stage", "param": ["playground_inside_note_hut"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "playground_inside",
+            "location": "Playground",
+            "text": "It's time to have a look around the playground.\nMaybe you'll find some clues here.",
+            "background": "",
+            "options": [
+                {
+                    "text": "Sandbox seems like a good place to start.",
+                    "functions": [
+                        { "name": "add_batteries", "param": [-1] },
+                        { "name": "change_stage", "param": ["playground_inside_lastoption"] }
+                    ]
+                },
+                {
+                    "text": "Playhouse has a lamp near it.",
+                    "functions": [
+                        { "name": "change_stage", "param": ["playground_inside_note_clearing"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "playground_inside_lastoption",
+            "location": "Playground",
+            "text": "You don't have batteries to check other places.\nSeems you only have one option left.",
+            "background": "",
+            "options": [
+                {
+                    "text": "Playhouse has a lamp near it.",
+                    "functions": [
+                        { "name": "change_stage", "param": ["playground_inside_note_clearing"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "playground_inside_note_hut",
+            "location": "Playground",
+            "text": "After checking the bushes, you found something.\nIt's a drawing with some directions at the bottom.",
+            "background": "",
+            "options": [
+                {
+                    "text": "Well, I guess forest it is.",
+                    "functions": [
+                        { "name": "set_batteries", "param": [6] },
+                        { "name": "change_stage", "param": ["forest_entrance_hut"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "playground_inside_note_clearing",
+            "location": "Playground",
+            "text": "After going inside playhouse, you notice something.\nIt's a drawing with some directions at the bottom.",
+            "background": "",
+            "options": [
+                {
+                    "text": "Well, I guess forest it is.",
+                    "functions": [
+                        { "name": "set_batteries", "param": [6] },
+                        { "name": "change_stage", "param": ["forest_entrance_clearing"] }
+                    ]
+                }
+            ]
+        },
+
+
+
+        {
+            "id": "forest_entrance_hut",
+            "location": "Forest",
+            "text": "You arrived at the edge of a forest.\nYou found some batteries but lost the drawing.",
+            "background": "",
+            "options": [
+                {
+                    "text": "Okay, here goes nothing.",
+                    "functions": [
+                        { "name": "change_stage", "param": ["forest_path_hut_1"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "forest_path_hut_1",
+            "location": "Forest",
+            "text": "First crossroad. Which way was it?",
+            "background": "",
+            "options": [
+                {
+                    "text": "Left",
+                    "functions": [
+                        { "name": "add_batteries", "param": [-1] },
+                        { "name": "change_stage", "param": ["forest_path_hut_2"] }
+                    ]
+                },
+                {
+                    "text": "Right",
+                    "functions": [
+                        { "name": "add_batteries", "param": [-1] },
+                        { "name": "change_stage", "param": ["ending_forest_lost"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "forest_path_hut_2",
+            "location": "Forest",
+            "text": "Another crossroad. Hope you still remember the way.",
+            "background": "",
+            "options": [
+                {
+                    "text": "Left",
+                    "functions": [
+                        { "name": "add_batteries", "param": [-1] },
+                        { "name": "change_stage", "param": ["forest_path_hut_3"] }
+                    ]
+                },
+                {
+                    "text": "Right",
+                    "functions": [
+                        { "name": "add_batteries", "param": [-1] },
+                        { "name": "change_stage", "param": ["ending_forest_lost"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "forest_path_hut_3",
+            "location": "Forest",
+            "text": "Third choice. You better not miss.",
+            "background": "",
+            "options": [
+                {
+                    "text": "Left",
+                    "functions": [
+                        { "name": "add_batteries", "param": [-1] },
+                        { "name": "change_stage", "param": ["forest_path_hut_4"] }
+                    ]
+                },
+                {
+                    "text": "Right",
+                    "functions": [
+                        { "name": "add_batteries", "param": [-1] },
+                        { "name": "change_stage", "param": ["ending_forest_lost"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "forest_path_hut_4",
+            "location": "Forest",
+            "text": "Finally last choice. Which way was it again?",
+            "background": "",
+            "options": [
+                {
+                    "text": "Left",
+                    "functions": [
+                        { "name": "add_batteries", "param": [-1] },
+                        { "name": "change_stage", "param": ["ending_forest_lost"] }
+                    ]
+                },
+                {
+                    "text": "Right",
+                    "functions": [
+                        { "name": "add_batteries", "param": [-1] },
+                        { "name": "change_stage", "param": ["forest_hut_arrived"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "forest_hut_arrived",
+            "location": "Hut in the Forest",
+            "text": "You see a dilapidated hut among the trees.\nYou also notice a black car covered in vines.",
+            "background": "",
+            "options": [
+                {
+                    "text": "I wonder if it's that car.",
+                    "functions": [
+                        { "name": "change_stage", "param": ["forest_hut_car_approach"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "forest_hut_car_approach",
+            "location": "Hut in the Forest",
+            "text": "The car is a wreck, with missing parts and rust.\nSeems it haven't been used in years.",
+            "background": "",
+            "options": [
+                {
+                    "text": "I don't think I'll find anything here.",
+                    "functions": [
+                        { "name": "change_stage", "param": ["forest_hut_car_lights"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "forest_hut_car_lights",
+            "location": "Hut in the Forest",
+            "text": "Suddenly, there is a sound from the wreck.\nYou turn around and are blinded by light.",
+            "background": "",
+            "options": [
+                {
+                    "text": "I can't see.",
+                    "functions": [
+                        { "name": "change_stage", "param": ["ending_hut"] }
+                    ]
+                }
+            ]
+        },
+
+
+
+        {
+            "id": "forest_entrance_clearing",
+            "location": "Forest",
+            "text": "You arrived at the edge of a forest.\nYou found some batteries but lost the drawing.",
+            "background": "",
+            "options": [
+                {
+                    "text": "Okay, here goes nothing.",
+                    "functions": [
+                        { "name": "change_stage", "param": ["forest_path_clearing_1"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "forest_path_clearing_1",
+            "location": "Forest",
+            "text": "First crossroad. Which way was it?",
+            "background": "",
+            "options": [
+                {
+                    "text": "Left",
+                    "functions": [
+                        { "name": "add_batteries", "param": [-1] },
+                        { "name": "change_stage", "param": ["ending_forest_lost"] }
+                    ]
+                },
+                {
+                    "text": "Right",
+                    "functions": [
+                        { "name": "add_batteries", "param": [-1] },
+                        { "name": "change_stage", "param": ["forest_path_clearing_2"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "forest_path_clearing_2",
+            "location": "Forest",
+            "text": "Another crossroad. Hope you still remember the way.",
+            "background": "",
+            "options": [
+                {
+                    "text": "Left",
+                    "functions": [
+                        { "name": "add_batteries", "param": [-1] },
+                        { "name": "change_stage", "param": ["forest_path_clearing_3"] }
+                    ]
+                },
+                {
+                    "text": "Right",
+                    "functions": [
+                        { "name": "add_batteries", "param": [-1] },
+                        { "name": "change_stage", "param": ["ending_forest_lost"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "forest_path_clearing_3",
+            "location": "Forest",
+            "text": "Third choice. You better not miss.",
+            "background": "",
+            "options": [
+                {
+                    "text": "Left",
+                    "functions": [
+                        { "name": "add_batteries", "param": [-1] },
+                        { "name": "change_stage", "param": ["ending_forest_lost"] }
+                    ]
+                },
+                {
+                    "text": "Right",
+                    "functions": [
+                        { "name": "add_batteries", "param": [-1] },
+                        { "name": "change_stage", "param": ["forest_path_clearing_4"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "forest_path_clearing_4",
+            "location": "Forest",
+            "text": "Finally last choice. Which way was it again?",
+            "background": "",
+            "options": [
+                {
+                    "text": "Left",
+                    "functions": [
+                        { "name": "add_batteries", "param": [-1] },
+                        { "name": "change_stage", "param": ["ending_forest_lost"] }
+                    ]
+                },
+                {
+                    "text": "Right",
+                    "functions": [
+                        { "name": "add_batteries", "param": [-1] },
+                        { "name": "change_stage", "param": ["forest_clearing_arrived"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "forest_clearing_arrived",
+            "location": "Clearing in the Forest",
+            "text": "You see a quite big clearing in the middle of the forest.\nThere's a big hole in the middle",
+            "background": "",
+            "options": [
+                {
+                    "text": "I don't see anything else.",
+                    "functions": [
+                        { "name": "change_stage", "param": ["forest_clearing_hole"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "forest_clearing_hole",
+            "location": "Clearing in the Forest",
+            "text": "Curious, you approach the hole that resembles a grave.\nSuddenly, you hear a rustle behind you.",
+            "background": "",
+            "options": [
+                {
+                    "text": "Who's there?",
+                    "functions": [
+                        { "name": "change_stage", "param": ["forest_clearing_rustle"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "forest_clearing_rustle",
+            "location": "Clearing in the Forest",
+            "text": "You turn around in a panick.\nBefore you stands a menacing looking figure.",
+            "background": "",
+            "options": [
+                {
+                    "text": "Don't come any closer!",
+                    "functions": [
+                        { "name": "change_stage", "param": ["ending_clearing"] }
+                    ]
+                }
+            ]
+        },
+
+
+
+        {
+            "id": "ending_home_stay",
+            "location": "Path",
+            "text": "Probably for the best.\nYou stayed at home.",
+            "background": "",
+            "options": [
+                {
+                    "text": "...",
+                    "functions": [
+                        { "name": "execute_ending", "param": ["home_stay"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "ending_path_caught_dark",
+            "location": "Path",
+            "text": "Well, that was stupid.\nYou feel someone's hand on your shoulder.",
+            "background": "",
+            "options": [
+                {
+                    "text": "...",
+                    "functions": [
+                        { "name": "execute_ending", "param": ["path_caught_dark"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "ending_path_caught_trip",
+            "location": "Path",
+            "text": "You feel someone grabbing you.\nAt least you saved on batteries.",
+            "background": "",
+            "options": [
+                {
+                    "text": "...",
+                    "functions": [
+                        { "name": "execute_ending", "param": ["path_caught_trip"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "ending_path_caught_curious",
+            "location": "Path",
+            "text": "The person comes closer.\nCuriosity really is the first step to hell.",
+            "background": "",
+            "options": [
+                {
+                    "text": "...",
+                    "functions": [
+                        { "name": "execute_ending", "param": ["path_caught_curious"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "ending_path_caught_unconcern",
+            "location": "Path",
+            "text": "You feel a hand on your shoulder.\nYou probably should care more about the bushes.",
+            "background": "",
+            "options": [
+                {
+                    "text": "...",
+                    "functions": [
+                        { "name": "execute_ending", "param": ["path_caught_unconcern"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "ending_playground_gate",
+            "location": "Playground",
+            "text": "There is no one to let you in.\nYou turn around and see a menacing figure.",
+            "background": "",
+            "options": [
+                {
+                    "text": "...",
+                    "functions": [
+                        { "name": "execute_ending", "param": ["playground_gate"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "ending_forest_lost",
+            "location": "Forest",
+            "text": "It seems you've made a mistake.\nLet's go back. Which way was it?",
+            "background": "",
+            "options": [
+                {
+                    "text": "...",
+                    "functions": [
+                        { "name": "execute_ending", "param": ["forest_lost"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "ending_hut_good",
+            "location": "Hut in the Forest",
+            "text": "The headlights turn off and you regain your sight.\nWith no one around, you turn towards the hut.",
+            "background": "",
+            "options": [
+                {
+                    "text": "...",
+                    "functions": [
+                        { "name": "execute_ending", "param": ["hut_good"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "ending_hut_bad",
+            "location": "Hut in the Forest",
+            "text": "While you're blinded, someone grabs your shoulder.\nIt would be good if you weren't alone.",
+            "background": "",
+            "options": [
+                {
+                    "text": "...",
+                    "functions": [
+                        { "name": "execute_ending", "param": ["hut_bad"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "ending_clearing_neutral",
+            "location": "Clearing in the Forest",
+            "text": "Before they can approach you, something stops them.\nThe person from the shop shouts to run. So you do.",
+            "background": "",
+            "options": [
+                {
+                    "text": "...",
+                    "functions": [
+                        { "name": "execute_ending", "param": ["clearing_neutral"] }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "ending_clearing_bad",
+            "location": "Clearing in the Forest",
+            "text": "Before you can react, they approach and push you.\nYou fall into the hole. Dirt starts falling from above.",
+            "background": "",
+            "options": [
+                {
+                    "text": "...",
+                    "functions": [
+                        { "name": "execute_ending", "param": ["clearing_bad"] }
                     ]
                 }
             ]
