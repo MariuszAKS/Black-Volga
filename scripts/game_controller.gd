@@ -10,6 +10,7 @@ var current_stage: Stage
 
 var bandage_count = 1
 var battery_count = 4
+var suspicious_person = false
 
 
 func _ready():
@@ -50,6 +51,9 @@ func set_bandages(value: int):
 
 func set_batteries(value: int):
 	battery_count = value
+
+func set_suspicious_person(value: bool):
+	suspicious_person = value
 
 
 func add_bandages(value: int):
