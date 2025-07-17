@@ -11,6 +11,7 @@ var current_stage: Stage
 var bandage_count = 1
 var battery_count = 4
 var suspicious_person = false
+var ending_image = ""
 
 
 func _ready():
@@ -72,10 +73,6 @@ func add_batteries(value: int):
 
 
 func execute_ending(value: String):
-	match value:
-		"stay_home":
-			print("Ending: Stayed home")
-		_:
-			print("Not prepared ending:", value)
+	ending_image = "ending_" + value + ".png"
 	
 	ending_reached.emit()

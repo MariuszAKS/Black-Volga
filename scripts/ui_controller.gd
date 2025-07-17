@@ -2,6 +2,7 @@ extends Control
 
 
 @export var background: TextureRect
+@export var ending_texture: TextureRect
 @export var location: RichTextLabel
 @export var text: RichTextLabel
 @export var items: HBoxContainer
@@ -15,7 +16,7 @@ const battery_texture = preload("res://art/battery.png")
 func _ready():
 	GameController.stage_changed.connect(update_ui)
 	GameController.ending_reached.connect(on_ending_reached)
-	(menu.get_node("CenterContainer/StartButton") as Button).pressed.connect(start_the_game)
+	(menu.get_node("StartButton") as Button).pressed.connect(start_the_game)
 
 
 func start_the_game():
@@ -24,7 +25,8 @@ func start_the_game():
 
 func on_ending_reached():
 	menu.visible = true
-	print("Reached ending")
+	var foreground_path = "res://art/backgrounds/" + GameController.ending_image
+	ending_texture.texture = load(foreground_path) if ResourceLoader.exists(foreground_path) else null
 
 
 func update_ui():

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://64bs0sf43n4l" path="res://art/frame_1.png" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://bcqx826c77c7" path="res://art/backgrounds/home_ready.png" id="2_p57ef"]
 
-[node name="Game" type="Control" node_paths=PackedStringArray("background", "location", "text", "items", "options", "menu")]
+[node name="Game" type="Control" node_paths=PackedStringArray("background", "ending_texture", "location", "text", "items", "options", "menu")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,6 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_iywne")
 background = NodePath("Background")
+ending_texture = NodePath("Menu/Foreground")
 location = NodePath("MarginContainer/Control/LocationControl/Location")
 text = NodePath("MarginContainer/Control/TextControl/TextContainer/Text")
 items = NodePath("MarginContainer/Control/ItemsContainer/Items")
@@ -173,7 +174,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="CenterContainer" type="CenterContainer" parent="Menu"]
+[node name="Foreground" type="TextureRect" parent="Menu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -181,6 +182,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="StartButton" type="Button" parent="Menu/CenterContainer"]
+[node name="StartButton" type="Button" parent="Menu"]
 layout_mode = 2
+offset_left = 244.0
+offset_top = 301.0
+offset_right = 393.0
+offset_bottom = 340.0
 text = "Start the Game"
